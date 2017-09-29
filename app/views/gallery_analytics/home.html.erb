@@ -1,0 +1,8 @@
+<%= form_tag parse_gallery_log_path, { :multipart => true } do %>
+    <p>
+      <%= file_field_tag 'file' %>
+    </p>
+    <p>
+      <%= submit_tag "Upload" %>
+    </p>
+<% end %>

@@ -1,0 +1,3 @@
+<% @log_hash.each do |key, value| %>
+    <div>Room <%= key %>, <%= value[:average_stay] %> minute average visit, <%= value[:visitor_count] %> visitor(s) total</div>
+<% end %>
