@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root 'gallery_analytics#home', as: :home
 
   post 'gallery_analytics/parse_gallery_log', as: :parse_gallery_log
-  get 'gallery_analytics/show', as: :show_gallery_analytics
+  resources :gallery_analytics
+  #get 'gallery_analytics/show/:id', as: :show_gallery_analytics
+  #get 'gallery_analytics/index', as: :index
 
 end

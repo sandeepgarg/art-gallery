@@ -1,3 +1,4 @@
+<h1><%= flash[:error] %></h1>
 <%= form_tag parse_gallery_log_path, { :multipart => true } do %>
     <p>
       <%= file_field_tag 'file' %>

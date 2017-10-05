@@ -1,0 +1,22 @@
+<table>
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>action</th>
+  </tr>
+  <% @log_files.each do |log_file| %>
+      <tr>
+        <td>
+          <%= log_file.id %>
+        </td>
+        <td>
+          <%= log_file.name %>
+        </td>
+        <td>
+          <%= link_to "Result", gallery_analytic_path(log_file.id) %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @log_files %>
