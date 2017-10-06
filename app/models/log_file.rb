@@ -25,6 +25,7 @@ class LogFile < ApplicationRecord
         #splits log entry by space
         room_log_arr = room_log.split(' ')
 
+        #assigning log value to respective variables
         visitor = room_log_arr[0].to_i
         room = room_log_arr[1].to_i
         status = room_log_arr[2]
@@ -32,13 +33,18 @@ class LogFile < ApplicationRecord
 
         stay = 0
 
+        #checking if visitor key available in hash
         if log_hash.key?(visitor)
+          #checking if room key available in visitory hash
           if log_hash[visitor].key?(room)
+            #checking the status of visitor and calculating stay of visitor
             if log_hash[visitor][room][:status] == 'I'
               stay = timestamp - log_hash[visitor][room][:timestamp]
             elsif log_hash[visitor][room][:status] == 'O'
               stay = log_hash[visitor][room][:timestamp] - timestamp
             end
+
+            #incrementing room count of visitor, stay and average stay
             log_hash[visitor][:room_count] += 1
             log_hash[visitor][:stay] += stay
             log_hash[visitor][:average_stay] = log_hash[visitor][:stay] / log_hash[visitor][:room_count]
@@ -51,6 +57,7 @@ class LogFile < ApplicationRecord
               stay: stay
           }
         else
+          #initiating hash for visitor
           log_hash[visitor] = {
               room => {
                   status: status,
@@ -63,6 +70,7 @@ class LogFile < ApplicationRecord
           }
         end
       end
+      #closing file
       file_pointer.close
       log_hash
 
@@ -71,6 +79,7 @@ class LogFile < ApplicationRecord
     end
   end
 
+  #saving parsed result to database
   def save_parsed_result(log_hash)
     log_hash.each do |visitor_id, visitor_hash|
       Visitor.create_entry(self.id, visitor_id, visitor_hash)

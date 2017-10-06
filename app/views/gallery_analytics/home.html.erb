@@ -1,9 +1,14 @@
 <h1><%= flash[:error] %></h1>
 <%= form_tag parse_gallery_log_path, { :multipart => true } do %>
     <p>
-      <%= file_field_tag 'file' %>
+
+      <label class="custom-file">
+        <%= file_field_tag 'file', class: "custom-file-input" %>
+        <span class="custom-file-control"></span>
+      </label>
     </p>
     <p>
       <%= submit_tag "Upload" %>
     </p>
 <% end %>
+

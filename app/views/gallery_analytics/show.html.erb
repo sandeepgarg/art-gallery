@@ -1,21 +1,26 @@
-<table>
-  <tr>
-    <th>visitor id</th>
-    <th>room visits</th>
-    <th>average stay</th>
-  </tr>
-  <% @log_file.visitors.each do |visitor| %>
-      <tr>
-        <td>
-          <%= visitor.visitor_id %>
-        </td>
-        <td>
-          <%= visitor.room_visits %>
-        </td>
-        <td>
-          <%= visitor.average_stay %>
-        </td>
-      </tr>
-  <% end %>
-</table>
-
+<div class="container">
+  <table class="table table-striped table-bordered">
+    <thead class="thead-default">
+    <tr>
+      <th>visitor id</th>
+      <th>room visits</th>
+      <th>average stay</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @log_file.visitors.each do |visitor| %>
+        <tr>
+          <td>
+            <%= visitor.visitor_id %>
+          </td>
+          <td>
+            <%= visitor.room_visits %>
+          </td>
+          <td>
+            <%= visitor.average_stay %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

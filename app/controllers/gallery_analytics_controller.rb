@@ -11,6 +11,7 @@ class GalleryAnalyticsController < ApplicationController
     if parsed_result
       name = params[:file].original_filename
       content_type = params[:file].content_type
+      #creating log entry in table
       log_file = LogFile.create(name: name, content_type: content_type)
       log_file.save_parsed_result(parsed_result)
     else
@@ -19,6 +20,7 @@ class GalleryAnalyticsController < ApplicationController
       return
     end
     redirect_to gallery_analytics_path
+
 =begin
     file = File.open params[:file].path
     number_of_lines = file.readline
